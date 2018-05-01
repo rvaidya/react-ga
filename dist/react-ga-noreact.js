@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("react"), require("prop-types"));
+		module.exports = factory();
 	else if(typeof define === 'function' && define.amd)
-		define(["react", "prop-types"], factory);
+		define([], factory);
 	else {
-		var a = typeof exports === 'object' ? factory(require("react"), require("prop-types")) : factory(root["react"], root["prop-types"]);
+		var a = factory();
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_12__, __WEBPACK_EXTERNAL_MODULE_13__) {
+})(typeof self !== 'undefined' ? self : this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 10);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -924,163 +924,6 @@ exports.default = {
     gaCalls.push([].concat(args));
   }
 };
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.OutboundLink = undefined;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _OutboundLink = __webpack_require__(11);
-
-var _OutboundLink2 = _interopRequireDefault(_OutboundLink);
-
-var _noreact = __webpack_require__(2);
-
-var Defaults = _interopRequireWildcard(_noreact);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-_OutboundLink2.default.origTrackLink = _OutboundLink2.default.trackLink;
-_OutboundLink2.default.trackLink = outboundLink;
-var OutboundLink = exports.OutboundLink = _OutboundLink2.default;
-
-exports.default = _extends({}, Defaults, {
-    OutboundLink: OutboundLink
-});
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(12);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(13);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _warn = __webpack_require__(0);
-
-var _warn2 = _interopRequireDefault(_warn);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var NEWTAB = '_blank';
-var MIDDLECLICK = 1;
-
-var OutboundLink = function (_Component) {
-  _inherits(OutboundLink, _Component);
-
-  function OutboundLink() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, OutboundLink);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OutboundLink.__proto__ || Object.getPrototypeOf(OutboundLink)).call.apply(_ref, [this].concat(args))), _this), _this.handleClick = function (event) {
-      var _this$props = _this.props,
-          target = _this$props.target,
-          eventLabel = _this$props.eventLabel,
-          to = _this$props.to,
-          onClick = _this$props.onClick;
-
-      var eventMeta = { label: eventLabel };
-      var sameTarget = target !== NEWTAB;
-      var normalClick = !(event.ctrlKey || event.shiftKey || event.metaKey || event.button === MIDDLECLICK);
-
-      if (sameTarget && normalClick) {
-        event.preventDefault();
-        OutboundLink.trackLink(eventMeta, function () {
-          window.location.href = to;
-        });
-      } else {
-        OutboundLink.trackLink(eventMeta, function () {});
-      }
-
-      if (onClick) {
-        onClick(event);
-      }
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(OutboundLink, [{
-    key: 'render',
-    value: function render() {
-      var props = _extends({}, this.props, {
-        href: this.props.to,
-        onClick: this.handleClick
-      });
-      delete props.eventLabel;
-      return _react2.default.createElement('a', props);
-    }
-  }]);
-
-  return OutboundLink;
-}(_react.Component);
-
-OutboundLink.propTypes = {
-  eventLabel: _propTypes2.default.string.isRequired,
-  target: _propTypes2.default.string,
-  to: _propTypes2.default.string,
-  onClick: _propTypes2.default.func
-};
-OutboundLink.defaultProps = {
-  target: null,
-  to: null,
-  onClick: null
-};
-
-OutboundLink.trackLink = function () {
-  (0, _warn2.default)('ga tracking not enabled');
-};
-
-exports.default = OutboundLink;
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_12__;
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_13__;
 
 /***/ })
 /******/ ]);
