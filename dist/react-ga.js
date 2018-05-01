@@ -933,9 +933,9 @@ exports.default = {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
-exports.OutboundLink = undefined;
+exports.OutboundLink = exports.testModeAPI = exports.outboundLink = exports.plugin = exports.exception = exports.event = exports.timing = exports.modalview = exports.pageview = exports.send = exports.set = exports.ga = exports.initialize = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -951,12 +951,25 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var initialize = exports.initialize = Defaults.initialize;
+var ga = exports.ga = Defaults.ga;
+var set = exports.set = Defaults.set;
+var send = exports.send = Defaults.send;
+var pageview = exports.pageview = Defaults.pageview;
+var modalview = exports.modalview = Defaults.modalview;
+var timing = exports.timing = Defaults.timing;
+var event = exports.event = Defaults.event;
+var exception = exports.exception = Defaults.exception;
+var plugin = exports.plugin = Defaults.plugin;
+var outboundLink = exports.outboundLink = Defaults.outboundLink;
+var testModeAPI = exports.testModeAPI = Defaults.testModeAPI;
+
 _OutboundLink2.default.origTrackLink = _OutboundLink2.default.trackLink;
-_OutboundLink2.default.trackLink = outboundLink;
+_OutboundLink2.default.trackLink = Defaults.outboundLink;
 var OutboundLink = exports.OutboundLink = _OutboundLink2.default;
 
 exports.default = _extends({}, Defaults, {
-    OutboundLink: OutboundLink
+  OutboundLink: OutboundLink
 });
 
 /***/ }),
