@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --config demo/webpack.config.js --hot --inline",
     "test": "npm run lint && npm run test-only",
-    "test-only": "BABEL_ENV=test nyc mocha",
+    "test-only": "cross-env BABEL_ENV=test nyc mocha",
     "build": "webpack",
     "lint": "eslint src webpack.config.js test --ext .js,.jsx",
     "preversion": "npm test && npm run lint",
