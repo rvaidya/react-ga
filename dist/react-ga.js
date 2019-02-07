@@ -7,7 +7,7 @@
 		var a = typeof exports === 'object' ? factory(require("react"), require("prop-types")) : factory(root["react"], root["prop-types"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_12__, __WEBPACK_EXTERNAL_MODULE_13__) {
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_11__, __WEBPACK_EXTERNAL_MODULE_12__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 10);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -116,7 +116,7 @@ function trim(s) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.testModeAPI = exports.plugin = undefined;
+exports.testModeAPI = exports.OutboundLink = exports.plugin = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -161,6 +161,10 @@ var _testModeAPI = __webpack_require__(9);
 
 var _testModeAPI2 = _interopRequireDefault(_testModeAPI);
 
+var _OutboundLink = __webpack_require__(10);
+
+var _OutboundLink2 = _interopRequireDefault(_OutboundLink);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -181,7 +185,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 var _debug = false;
 var _titleCase = true;
 var _testMode = false;
-var _alwaysSendToDefaultTracker = true;
 
 var internalGa = function internalGa() {
   var _window;
@@ -207,7 +210,7 @@ function _gaCommand(trackerNames) {
       return;
     }
 
-    if (_alwaysSendToDefaultTracker || !Array.isArray(trackerNames)) internalGa.apply(undefined, args);
+    internalGa.apply(undefined, args);
     if (Array.isArray(trackerNames)) {
       trackerNames.forEach(function (name) {
         internalGa.apply(undefined, _toConsumableArray([name + '.' + command].concat(args.slice(1))));
@@ -249,8 +252,6 @@ function initialize(configsOrTrackingId, options) {
 
     (0, _loadGA2.default)(options);
   }
-
-  _alwaysSendToDefaultTracker = options && typeof options.alwaysSendToDefaultTracker === 'boolean' ? options.alwaysSendToDefaultTracker : true;
 
   if (Array.isArray(configsOrTrackingId)) {
     configsOrTrackingId.forEach(function (config) {
@@ -726,6 +727,9 @@ function outboundLink(args, hitCallback, trackerNames) {
   }
 }
 
+_OutboundLink2.default.origTrackLink = _OutboundLink2.default.trackLink;
+_OutboundLink2.default.trackLink = outboundLink;
+var OutboundLink = exports.OutboundLink = _OutboundLink2.default;
 var testModeAPI = exports.testModeAPI = _testModeAPI2.default;
 
 exports.default = {
@@ -740,6 +744,7 @@ exports.default = {
   exception: exception,
   plugin: plugin,
   outboundLink: outboundLink,
+  OutboundLink: OutboundLink,
   testModeAPI: _testModeAPI2.default
 };
 
@@ -935,63 +940,16 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.OutboundLink = exports.testModeAPI = exports.outboundLink = exports.plugin = exports.exception = exports.event = exports.timing = exports.modalview = exports.pageview = exports.send = exports.set = exports.ga = exports.initialize = undefined;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _OutboundLink = __webpack_require__(11);
-
-var _OutboundLink2 = _interopRequireDefault(_OutboundLink);
-
-var _noreact = __webpack_require__(2);
-
-var Defaults = _interopRequireWildcard(_noreact);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var initialize = exports.initialize = Defaults.initialize;
-var ga = exports.ga = Defaults.ga;
-var set = exports.set = Defaults.set;
-var send = exports.send = Defaults.send;
-var pageview = exports.pageview = Defaults.pageview;
-var modalview = exports.modalview = Defaults.modalview;
-var timing = exports.timing = Defaults.timing;
-var event = exports.event = Defaults.event;
-var exception = exports.exception = Defaults.exception;
-var plugin = exports.plugin = Defaults.plugin;
-var outboundLink = exports.outboundLink = Defaults.outboundLink;
-var testModeAPI = exports.testModeAPI = Defaults.testModeAPI;
-
-_OutboundLink2.default.origTrackLink = _OutboundLink2.default.trackLink;
-_OutboundLink2.default.trackLink = Defaults.outboundLink;
-var OutboundLink = exports.OutboundLink = _OutboundLink2.default;
-
-exports.default = _extends({}, Defaults, {
-  OutboundLink: OutboundLink
-});
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(12);
+var _react = __webpack_require__(11);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = __webpack_require__(13);
+var _propTypes = __webpack_require__(12);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -1084,16 +1042,16 @@ OutboundLink.trackLink = function () {
 exports.default = OutboundLink;
 
 /***/ }),
+/* 11 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_11__;
+
+/***/ }),
 /* 12 */
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_12__;
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_13__;
 
 /***/ })
 /******/ ]);
